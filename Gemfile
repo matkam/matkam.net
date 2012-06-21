@@ -7,7 +7,6 @@ group :development, :test do
   gem 'rspec-rails', '2.10.0'
 end
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -24,7 +23,11 @@ end
 
 group :production do
   gem 'pg', '~> 0.12.2'
+  gem 'rack-google_analytics', :require => "rack/google_analytics"
 end
+
+gem 'thin'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -40,8 +43,4 @@ end
 
 # To use debugger
 # gem 'debugger'
-
-
-
-
 
