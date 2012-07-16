@@ -1,9 +1,14 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
+gem 'pg', '~> 0.12.2'
+gem 'thin'
+
+group :production do
+  gem 'rack-google_analytics', :require => "rack/google_analytics"
+end
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails', '2.10.0'
 end
 
@@ -18,15 +23,9 @@ end
 gem 'jquery-rails'
 
 group :test do
+  gem 'sqlite3'
   gem 'capybara', '~> 1.1.2'
 end
-
-group :production do
-  gem 'pg', '~> 0.12.2'
-  gem 'rack-google_analytics', :require => "rack/google_analytics"
-end
-
-gem 'thin'
 
 
 # To use ActiveModel has_secure_password
