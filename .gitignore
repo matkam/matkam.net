@@ -17,3 +17,7 @@
 # Ignore development files
 .project
 
+*~
+*.swp
+*.kate-swp
+*.swo
