@@ -4,6 +4,7 @@ gem 'rails', '3.2.6'
 gem 'bootstrap-sass', '~> 2.0.0'
 gem 'pg', '~> 0.12.2'
 gem 'thin'
+gem 'jquery-rails'
 
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"
@@ -13,6 +14,8 @@ group :development, :test do
   gem 'rspec-rails', '2.10.0'
 end
 
+gem 'annotate', '~> 2.4.1.beta', group: :development
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -21,10 +24,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
 group :test do
-  gem 'sqlite3'
+#  gem 'sqlite3'
   gem 'capybara', '~> 1.1.2'
 end
 
