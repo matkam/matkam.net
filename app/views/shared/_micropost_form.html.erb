@@ -1,7 +1,12 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+    <%= f.text_area :content, placeholder: "Compose new micropost...",
+                    onKeyUp: "CountChars();" %>
+  Characters remaning:
+  <input disabled size="3"
+    value="<%= Micropost.validators_on(:content)[1].options[:maximum] %>"
+    name="content_length" id="content_length">
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
