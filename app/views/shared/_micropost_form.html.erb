@@ -2,11 +2,10 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost...",
-                    onKeyUp: "CountChars();" %>
-  Characters remaning:
-  <input disabled size="3"
-    value="<%= Micropost.validators_on(:content)[1].options[:maximum] %>"
-    name="content_length" id="content_length">
+    				maxlength: maxchars = Micropost.validators_on(:content)[1].options[:maximum],
+                    onKeyUp: "document.getElementById('chars_left').innerHTML= \
+                             #{maxchars} - this.value.length" %>
+    <div id="chars_left"><%= maxchars %></div>
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
