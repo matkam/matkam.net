@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost...",
-    				maxlength: maxchars = Micropost.validators_on(:content)[1].options[:maximum],
+                    maxlength: maxchars = Micropost.validators_on(:content)[1].options[:maximum],
                     onKeyUp: "document.getElementById('chars_left').innerHTML= \
                              #{maxchars} - this.value.length" %>
     <div id="chars_left"><%= maxchars %></div>
