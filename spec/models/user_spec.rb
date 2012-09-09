@@ -4,7 +4,7 @@ describe User do
   
   before do
     @user = User.new(name: "Example User", email: "user@example.com",
-		     password: "foobar", password_confirmation: "foobar")
+                     password: "foobar", password_confirmation: "foobar")
   end
   
   subject { @user }
@@ -42,9 +42,9 @@ describe User do
   describe "accessible attributes" do
     it "should not allow access to 'admin'" do
       expect do
-	User.new(name: @user.name, email: @user.email,
-	         password: @user.password, password_confirmation: @user.password,
-	         admin: true)
+        User.new(name: @user.name, email: @user.email,
+                 password: @user.password, password_confirmation: @user.password,
+                 admin: true)
       end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end
   end
@@ -67,10 +67,10 @@ describe User do
   describe "when email format is invalid" do
     it "should be invalid" do
       addresses = %w[user@foo,com user_at_foo.org example.user@foo.
-		      foo@bar_baz.com foo@bar+baz.com]
+                      foo@bar_baz.com foo@bar+baz.com]
       addresses.each do |invalid_address|
-	@user.email = invalid_address
-	@user.should_not be_valid
+        @user.email = invalid_address
+        @user.should_not be_valid
       end
     end
   end
@@ -79,8 +79,8 @@ describe User do
     it "should be valid" do
       addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
       addresses.each do |valid_address|
-	@user.email = valid_address
-	@user.should be_valid
+        @user.email = valid_address
+        @user.should be_valid
       end
     end
   end
@@ -164,7 +164,7 @@ describe User do
       microposts = @user.microposts
       @user.destroy
       microposts.each do |micropost|
-	Micropost.find_by_id(micropost.id).should be_nil
+      Micropost.find_by_id(micropost.id).should be_nil
       end
     end
 
@@ -172,10 +172,21 @@ describe User do
       let(:unfollowed_post) do
         FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
       end
+      let(:followed_user) { FactoryGirl.create(:user) }
+      
+      before do
+        @user.follow!(followed_user)
+        3.times { followed_user.microposts.create!(content: "Lorem ipsum") }
+      end
       
       its(:feed) { should include(newer_micropost) }
       its(:feed) { should include(older_micropost) }
       its(:feed) { should_not include(unfollowed_post) }
+      its(:feed) do
+        followed_user.microposts.each do |followed_micropost|
+          should include(followed_micropost)
+        end
+      end
     end
   end
   
