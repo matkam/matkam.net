@@ -3,12 +3,13 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'bootstrap-sass', '~> 2.0.0'
 gem 'bcrypt-ruby', '~> 3.0.1'
-gem 'pg', '~> 0.12.2'
+gem 'pg'
 gem 'thin'
 gem 'jquery-rails'
 gem 'faker', '~> 1.0.1'
 gem 'will_paginate', '~> 3.0.3'
 gem 'bootstrap-will_paginate', '~> 0.0.6'
+gem "sourceninja", "~> 0.9.0"
 
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"
